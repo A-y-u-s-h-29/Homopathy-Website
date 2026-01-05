@@ -205,7 +205,18 @@ const App = () => {
   };
 
   // Google Maps iframe
-  const mapIframe = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.4254613792386!2d77.43769940000001!3d28.5870105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef057619b181%3A0xa053c7aeea24fd84!2sVikas%20Homeopathy%20Centre!5e0!3m2!1sen!2sin!4v1766585098917!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+  const mapIframe = `
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.4254613792386!2d77.43769940000001!3d28.5870105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef057619b181%3A0xa053c7aeea24fd84!2sVikas%20Homeopathy%20Centre!5e0!3m2!1sen!2sin!4v1766585098917!5m2!1sen!2sin"
+  width="100%"
+  height="100%"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+`;
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-cyan-50 font-sans scroll-smooth overflow-x-hidden">
@@ -219,7 +230,7 @@ const App = () => {
                 <FlaskConical className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-lg lg:text-2xl font-bold text-gray-800 leading-tight">Vikas Homeopathy Centre</h1>
+                <h1 className="text-lg lg:text-2xl font-bold text-gray-800 leading-tight">Aesthederm Homeopathy Clinic</h1>
                 <p className="text-xs lg:text-sm text-cyan-600 font-medium hidden sm:block">Holistic Healing</p>
               </div>
             </div>
@@ -296,16 +307,15 @@ const App = () => {
               
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight -mt-4 lg:-mt-6">
-                Natural Healing
+                Your Family’s 
                 <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  With Homeopathy
+                  Trusted Homeopathy Clinic
                 </span>
               </h1>
               
               {/* Subtitle */}
               <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl -mt-3 lg:-mt-5">
-                Experience holistic treatment that addresses the root cause of your health issues, 
-                not just the symptoms. Safe, natural, and effective healing for all ages.
+                Safe, gentle homeopathy for all ages by Dr Vikas Tonger. Root cause treatment for lasting releif.
               </p>
               
               {/* Stats - Mobile grid */}
@@ -380,7 +390,7 @@ const App = () => {
                 <span className="text-cyan-600"> Compassion</span>
               </h2>
               <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 leading-relaxed">
-                At Vikas Homeopathy Centre, we believe in treating the person, not just the disease. 
+                At Dr Vikas Homeopathy, we believe in treating the person, not just the disease. 
                 Our holistic approach combines traditional homeopathic wisdom with modern medical 
                 understanding to provide comprehensive care.
               </p>
@@ -642,14 +652,15 @@ const App = () => {
                 {/* Overlay Button */}
                 <div className="absolute bottom-3 lg:bottom-4 left-1/2 transform -translate-x-1/2">
                   <a 
-                    href="https://maps.google.com/?q=Vikas+Homeopathy+Centre+Noida" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="bg-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg font-semibold text-gray-900 hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 text-sm lg:text-base"
-                  >
-                    <Navigation className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-                    <span>Get Directions</span>
-                  </a>
+  href="https://www.google.com/maps/place/Aesthederm+Homeopathy+Clinic--Homeopathy+Doctor/@28.5875894,77.4379428,17z"
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="bg-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg font-semibold text-gray-900 hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 text-sm lg:text-base"
+>
+  <Navigation className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
+  <span>Get Directions</span>
+</a>
+
                 </div>
               </div>
             </div>
@@ -784,7 +795,7 @@ const App = () => {
                   <FlaskConical className="w-5 h-5 lg:w-7 lg:h-7" />
                 </div>
                 <div>
-                  <h3 className="text-base lg:text-xl font-bold">Vikas Homeopathy Centre</h3>
+                  <h3 className="text-base lg:text-xl font-bold">Aesthederm Homeopathy Clinic</h3>
                   <p className="text-xs lg:text-sm text-cyan-400">Holistic Healing Since 2005</p>
                 </div>
               </div>
