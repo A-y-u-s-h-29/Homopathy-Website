@@ -5,6 +5,9 @@ import video2 from "./assets/v2.mp4";
 import video3 from "./assets/v3.mp4";
 import video4 from "./assets/v4.mp4";
 import video5 from "./assets/v5.mp4";
+import video6 from "./assets/v6.mp4";
+import video7 from "./assets/v7.mp4";
+import video8 from "./assets/v8.mp4";
 
 import { 
   Phone, MapPin, Clock, Mail, Star, Award, 
@@ -236,17 +239,13 @@ const App = () => {
 
   // Group services by category
   const servicesByCategory = {
-    "Respiratory & Allergies": ["Asthma", "Allergies", "COVID-19", "Respiratory"],
-    "Orthopaedic & Pain": ["Chronic Pain", "Arthritis", "Orthopaedic", "Injury", "Gout"],
-    "Digestive Issues": ["Digestive", "Acidity", "Constipation", "Gerd", "Gall bladder stone"],
-    "Skin & Dermatology": ["Dermatology", "Eczema", "Psoriasis", "Vitiligo", "Warts", "Hyperpigmentation", "Corn"],
-    "Women's Health": ["Gynaecology", "Female infertility", "Pcod", "Infertility"],
-    "Men's Health": ["Male sexual problems", "Erectile Dysfunction"],
-    "Hair Problems": ["Hair loss", "Hairfall"],
-    "Chronic Diseases": ["Chronic diseases", "Diabetes", "Blood pressure", "Hypothyroidism", "Kidney stone"],
-    "Mental Health": ["Anxiety", "Insomnia"],
-    "Paediatrics": ["Paediatrics"],
-    "Homeopathic Store": ["Homeo Medicine Store"]
+    "Paediatric Care": ["Enlarged Adenoids", "Recurrent Infections", "Tonsillitis ", "Allergies, Asthma ","Constipation","Bedwetting","Boosting Immunity"],
+    "Women’s Health": ["PCOD & PCOS", "Ovarian Cysts", "Uterine Fibroid", "Leucorrhoea", "Irregular & Painful Periods","Menopausal Support","Infertility"],
+    "Digestive & Gut Healing": ["Acidity & Heartburn", "Gastric/Peptic Ulcers", "Anal fissures", "Piles", "IBS (Irritable Bowel Syndrome)","Constipation & Bowel Irregularities","Ulcerative Colitis","Fatty liver","Gastritis"],
+    "Resporatory Health": ["Asthma", "Allergic Rhinitis", "Bronchitis", "Sinusitis", "Chronic Cough", "Copd", "Nasal Polyps","Seasonal & Environmental Allergies"],
+    "Musculo-skeletal Care": ["Arthritis", "Backache", "Sciatica", "Cervical Spondylosis","Frozen shoulder","Knee Pain","Heel Pain","Gout"],
+    "Skin & Hair": ["Acne", "Alopecia Aerata","Dermatitis","Eczema","Psoriasis","Hairfall","Vitiligo (Leucoderma)","Urticaria","Herpes","Ringworm (Fungal Infections)"],
+    "Sexual Wellness": ["Erectile Dysfunction", "Premature Ejaculation","Low Sexual Drive","Performance Anxiety","Spermatorrhea","Emotional Stress Affecting Sexual Health"]
   };
 
   // Reviews data
@@ -337,9 +336,9 @@ const App = () => {
 
   // Contact details
   const contactInfo = {
-    address: "First floor, icon, extension, Techzone 4, Amrapali Leisure Valley, Noida, Greater Noida, Uttar Pradesh 201318",
+    address: "Aesthederm Homeopathy Clinic, Shop no- 24 & 25, First Floor, Amrapali Icon Leisure Valley, Noida Extension, Greater Noida, 201306",
     phone: "9953745006",
-    website: "vikashomeopathy.com",
+    website: "Aesthederm Homeopathy Clinic",
     hours: "Tuesday - Sunday 10am-2pm & 5pm-9pm Monday Closed"
   };
 
@@ -357,21 +356,29 @@ const App = () => {
 `;
 
   // Video data
-  const videoFiles = [video1, video2, video3, video4, video5];
+  const videoFiles = [video1, video2, video3, video4, video5 ,video6,video7,video8];
   const videoTitles = [
-    "PCOS Success Story",
-    "Migraine Relief Journey", 
-    "Skin Condition Recovery",
-    "Allergy Treatment",
-    "Digestive Issues"
-  ];
-  const videoQuotes = [
-    "After 5 years of struggle...",
-    "Finally migraine-free after 8 years",
-    "Clear skin after homeopathy",
-    "Seasonal allergies cured naturally",
-    "IBD symptoms significantly improved"
-  ];
+  "Case of Onychomycosis",
+  "Case of Polycystic or PCOS - related",
+  "Case of Psoriasis",
+  "Case of Vitiligo",
+  "Case of Atopic Dermatitis",
+  "Case of Psoriasis",
+  "Child Saved from Adenoid Surgery",
+  "Case of Vocal Cord Nodule Where Surgery Was Recommended, Treated with Homeopathy",
+];
+
+const videoQuotes = [
+  "Nail infection healed naturally without surgery.",
+  "Hormonal balance restored and cycles improved naturally.",
+  "Severe psoriasis relieved after years of struggle.",
+  "Visible skin repigmentation with long-term improvement.",
+  "Chronic itching and flare-ups controlled effectively.",
+  "Recurring psoriasis managed with lasting results.",
+  "Child avoided surgery and recovered safely with homeopathy.",
+  "Voice restored without surgery through homeopathic care.",
+];
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-cyan-50 font-sans scroll-smooth overflow-x-hidden">
@@ -443,91 +450,148 @@ const App = () => {
         </div>
       </header>
 
-      {/* Enhanced Hero Section - Mobile optimized */}
-      <section id="home" className="relative min-h-screen flex items-center pt-16 lg:pt-20 overflow-hidden">
-        {/* Background Elements - Mobile adjusted */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5"></div>
-        <div className="absolute top-10 right-10 lg:top-20 lg:right-20 w-40 h-40 lg:w-72 lg:h-72 bg-cyan-300/10 rounded-full blur-2xl lg:blur-3xl"></div>
-        <div className="absolute bottom-10 left-10 lg:bottom-20 lg:left-20 w-48 h-48 lg:w-96 lg:h-96 bg-blue-300/10 rounded-full blur-2xl lg:blur-3xl"></div>
+      {/* Enhanced Hero Section - Mobile optimized - Centered */}
+<section id="home" className="relative min-h-screen flex items-center justify-center pt-16 lg:pt-20 overflow-hidden">
+  {/* Background Elements - Mobile adjusted */}
+  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5"></div>
+  <div className="absolute top-10 right-10 lg:top-20 lg:right-20 w-40 h-40 lg:w-72 lg:h-72 bg-cyan-300/10 rounded-full blur-2xl lg:blur-3xl"></div>
+  <div className="absolute bottom-10 left-10 lg:bottom-20 lg:left-20 w-48 h-48 lg:w-96 lg:h-96 bg-blue-300/10 rounded-full blur-2xl lg:blur-3xl"></div>
+  
+  <div className="container mx-auto px-4 sm:px-6 py-10 lg:py-5 relative z-10">
+    <div className="max-w-4xl mx-auto text-center">
+      {/* Badge */}
+      <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-2xl border border-cyan-200 mb-6 lg:mb-8">
+        <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
+        <span className="font-semibold text-gray-700 text-xs lg:text-sm">Trusted by 500+ Patients Since 2005</span>
+      </div>
+      
+      {/* Main Heading */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4 lg:mb-6">
+        Your Family's 
+        <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          Trusted Homeopathy Clinic
+        </span>
+      </h1>
+      
+      {/* Subtitle */}
+      <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-6 lg:mb-8">
+        Safe, gentle homeopathy for all ages by Dr Vikas Tonger. Root cause treatment for lasting relief.
+      </p>
+      
+      {/* CTA Buttons - Centered */}
+      <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center pt-4 lg:pt-6">
+        <a
+          href="tel:09650787854"
+          className="group px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 lg:space-x-3 text-sm lg:text-base"
+        >
+          <Calendar className="w-4 h-4 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform" />
+          <span>Book Appointment</span>
+          <ArrowRight className="w-3 h-3 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
+        </a>
+
+        <button 
+          onClick={() => scrollToSection('services')}
+          className="px-6 py-3 lg:px-8 lg:py-4 bg-white text-gray-800 border-2 border-cyan-200 rounded-xl lg:rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:border-cyan-400 hover:scale-105 transition-all duration-300 text-sm lg:text-base"
+        >
+          View Our Services
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* About Dr Section */}
+<section id="about" className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+  <div className="container mx-auto px-4 sm:px-6">
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Doctor's Image - Left Side */}
+      <div className="relative">
+        <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+          <img 
+            src='/images/img.jpeg' 
+            className='w-full h-auto object-cover' 
+            alt="Dr. Vikas Tonger - Homeopathy Specialist"
+          />
+        </div>
         
-        <div className="container mx-auto px-4 sm:px-6 py-10 lg:py-5 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Text Content */}
-            <div className="space-y-6 lg:space-y-8 order-1">
-              {/* Badge */}
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-2xl border border-cyan-200">
-                <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-                <span className="font-semibold text-gray-700 text-xs lg:text-sm">Trusted by 500+ Patients Since 2005</span>
-              </div>
-              
-              {/* Main Heading */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight -mt-4 lg:-mt-6">
-                Your Family's 
-                <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  Trusted Homeopathy Clinic
-                </span>
-              </h1>
-              
-              {/* Subtitle */}
-              <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl -mt-3 lg:-mt-5">
-                Safe, gentle homeopathy for all ages by Dr Vikas Tonger. Root cause treatment for lasting relief.
-              </p>
-              
-              {/* CTA Buttons - Mobile stacked */}
-              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-4 lg:pt-6">
-                <a
-  href="tel:09650787854"
-  className="group px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 lg:space-x-3 text-sm lg:text-base"
->
-  <Calendar className="w-4 h-4 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform" />
-  <span>Book Appointment</span>
-  <ArrowRight className="w-3 h-3 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
-</a>
-
-                <button 
-                  onClick={() => scrollToSection('services')}
-                  className="px-6 py-3 lg:px-8 lg:py-4 bg-white text-gray-800 border-2 border-cyan-200 rounded-xl lg:rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:border-cyan-400 hover:scale-105 transition-all duration-300 text-sm lg:text-base"
-                >
-                  View Our Services
-                </button>
-              </div>
-            </div>
-
-            {/* Right Image Content - Mobile adjusted */}
-            <div className="relative order-2 mb-8 lg:mb-0 p-5">
-              {/* Main Image Container */}
-              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 h-100">
-                <img src='/images/img.jpeg' className='object-cover h-100 w-full' alt="Clinic interior" /> 
-              </div>
-
-              {/* Floating Elements - Hidden on small mobile */}
-              <div className="hidden sm:block absolute -top-2 -right-2 lg:top-2 lg:-right-4 bg-white p-3 lg:p-4 rounded-xl lg:rounded-2xl shadow-lg lg:shadow-xl border border-cyan-100">
-                <div className="flex items-center space-x-2 lg:space-x-3">
-                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-green-100 rounded-lg lg:rounded-xl flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 lg:w-6 lg:h-6 text-green-600" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 text-xs lg:text-sm">No Side Effects</div>
-                    <div className="text-xs text-gray-600">100% Natural</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="hidden sm:block absolute -bottom-2 -right-2 lg:-bottom-2 lg:-right-6 bg-white p-3 lg:p-4 rounded-xl lg:rounded-2xl shadow-lg lg:shadow-xl border border-cyan-100">
-                <div className="flex items-center space-x-2 lg:space-x-3">
-                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center">
-                    <Heart className="w-4 h-4 lg:w-6 lg:h-6 text-cyan-600" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 text-xs lg:text-sm">Personalized Care</div>
-                    <div className="text-xs text-gray-600">Individual Treatment</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Floating Badge */}
+        <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white p-4 lg:p-5 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl">
+          <div className="text-center">
+            <div className="font-bold text-lg lg:text-xl">15+ Years</div>
+            <div className="text-xs lg:text-sm opacity-90">Clinical Experience</div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Doctor's Info - Right Side */}
+      <div className="space-y-6 lg:space-y-8">
+        {/* Section Badge */}
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-2xl border border-cyan-200">
+          <User className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
+          <span className="font-semibold text-gray-700 text-xs lg:text-sm">Meet Our Specialist</span>
+        </div>
+        
+        {/* Heading */}
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+          About
+          <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            Dr. Vikas Tonger
+          </span>
+        </h2>
+        
+        {/* Description */}
+        <div className="space-y-4 text-gray-600 text-base lg:text-lg leading-relaxed">
+          <p>
+            Dr. Vikas Tonger is a trusted homeopathy specialist dedicated to holistic, root-cause–based healing. 
+            He follows a practical, patient-focused approach designed for quick improvement and lasting results.
+          </p>
+          <p>
+            With extensive clinical experience, Dr. Tonger treats a wide range of conditions including childhood 
+            disorders, respiratory and digestive problems, women's health issues (such as PCOD, ovarian cysts, 
+            uterine fibroids, and endometriosis), skin and hair conditions, joint pain, migraine, and other 
+            chronic health concerns. His treatment approach is safe, personalised, and non-invasive.
+          </p>
+          <p>
+            Based in Noida Extension, Dr. Tonger offers both in-clinic and online consultations, making quality 
+            homeopathic care accessible to patients across India.
+          </p>
+        </div>
+        
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+          <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
+            <div className="font-bold text-2xl lg:text-3xl text-cyan-600">5000+</div>
+            <div className="text-sm text-gray-600 mt-1">Patients Treated</div>
+          </div>
+          <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
+            <div className="font-bold text-2xl lg:text-3xl text-cyan-600">100%</div>
+            <div className="text-sm text-gray-600 mt-1">Natural</div>
+          </div>
+          <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
+            <div className="font-bold text-2xl lg:text-3xl text-cyan-600">15+</div>
+            <div className="text-sm text-gray-600 mt-1">Years Experience</div>
+          </div>
+          <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
+            <div className="font-bold text-2xl lg:text-3xl text-cyan-600">∞</div>
+            <div className="text-sm text-gray-600 mt-1">Online Support</div>
+          </div>
+        </div>
+        
+        {/* CTA Button */}
+        <div className="pt-4">
+          <a
+            href="tel:9953745006"
+            className="inline-flex items-center space-x-2 px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+          >
+            <Phone className="w-4 h-4 lg:w-5 lg:h-5" />
+            <span>Consult Dr. Vikas Today</span>
+            <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* About Section - Mobile optimized */}
       <section id="about" className="py-12 lg:py-20 bg-white p-4">
@@ -748,78 +812,81 @@ const App = () => {
 
 
 
-      {/* Services Section - Mobile optimized */}
-      <section id="services" className="py-12 lg:py-20 bg-gradient-to-b from-white to-cyan-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-5xl mx-auto mb-8 lg:mb-16">
-            <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
-              <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
-              <span className="font-semibold text-xs lg:text-sm">OUR SERVICES</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
-              Comprehensive 
-              <span className="text-cyan-600"> Homeopathic</span> Care
-            </h2>
-            <p className="text-base lg:text-lg text-gray-600 px-4">
-              We offer holistic treatment for a wide range of acute and chronic conditions, 
-              focusing on restoring your body's natural balance.
-            </p>
-          </div>
+      {/* Services Section - Full Width Vertical Layout */}
+<section id="services" className="py-12 lg:py-20 bg-gradient-to-b from-white to-cyan-50">
+  <div className="container mx-auto px-4">
+    <div className="text-center max-w-5xl mx-auto mb-8 lg:mb-16">
+      <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
+        <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
+        <span className="font-semibold text-xs lg:text-sm">OUR SERVICES</span>
+      </div>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
+        Comprehensive 
+        <span className="text-cyan-600"> Homeopathic</span> Care
+      </h2>
+      <p className="text-base lg:text-lg text-gray-600 px-4">
+        We offer holistic treatment for a wide range of acute and chronic conditions, 
+        focusing on restoring your body's natural balance.
+      </p>
+    </div>
 
-          {/* Services Grid - Mobile adjusted */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-8 lg:mb-12">
-            {Object.entries(servicesByCategory).map(([category, items], index) => (
-              <div 
-                key={index}
-                className="group bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-xl lg:hover:shadow-2xl transition-all duration-500 p-4 lg:p-8 border border-cyan-100 hover:border-cyan-300 cursor-pointer hover:scale-[1.02]"
-              >
-                <div className="mb-4 lg:mb-6">
-                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-xl lg:rounded-2xl flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <Stethoscope className="w-6 h-6 lg:w-8 lg:h-8 text-cyan-600" />
-                  </div>
-                  <h3 className="text-lg lg:text-2xl font-bold text-gray-900 mb-2 lg:mb-3">{category}</h3>
-                </div>
-                
-                <ul className="space-y-2 lg:space-y-3 mb-4 lg:mb-6">
-                  {items.slice(0, 4).map((item, idx) => (
-                    <li key={idx} className="flex items-center space-x-2 lg:space-x-3">
-                      <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-cyan-400 rounded-full"></div>
-                      <span className="text-sm lg:text-base text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                  {items.length > 4 && (
-                    <li className="text-cyan-600 font-medium text-sm lg:text-base">
-                      + {items.length - 4} more conditions
-                    </li>
-                  )}
-                </ul>
-                
-                
+    {/* Services Vertical Stack - Compact */}
+<div className="space-y-6 lg:space-y-8 max-w-6xl mx-auto">
+  {Object.entries(servicesByCategory).map(([category, items], index) => (
+    <div 
+      key={index}
+      className="group bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 lg:p-8 border border-cyan-100 hover:border-cyan-300"
+    >
+      <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-8">
+        {/* Left Section - Category Title */}
+        <div className="lg:w-1/4">
+          <div className="mb-4">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-2">{category}</h3>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-lg flex items-center justify-center">
+                <Stethoscope className="w-4 h-4 text-cyan-600" />
+              </div>
+              <span className="text-sm text-gray-500">{items.length} conditions</span>
+            </div>
+          </div>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+          >
+            <span>Get Treatment</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Right Section - Service Items */}
+        <div className="lg:w-3/4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+            {items.map((item, idx) => (
+              <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-cyan-50 transition-colors duration-200">
+                <div className="w-1.5 h-1.5 mt-2 bg-cyan-500 rounded-full flex-shrink-0"></div>
+                <span className="text-sm lg:text-base text-gray-700">{item}</span>
               </div>
             ))}
           </div>
-
-          {/* All Services Badge */}
-          <div className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl lg:rounded-2xl p-6 lg:p-8 text-center text-white shadow-xl">
-            <div className="max-w-2xl mx-auto">
-              <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4">40+ Health Conditions Treated</h3>
-              <p className="mb-4 lg:mb-6 text-cyan-100 text-sm lg:text-base">
-                From acute illnesses to chronic conditions, we provide comprehensive homeopathic care
-              </p>
-              <div className="flex flex-wrap justify-center gap-2 lg:gap-3">
-                {allServices.slice(0, 6).map((service, index) => (
-                  <span key={index} className="px-3 py-1 lg:px-4 lg:py-2 bg-white/20 backdrop-blur-sm rounded-full text-xs lg:text-sm">
-                    {service}
-                  </span>
-                ))}
-                <span className="px-3 py-1 lg:px-4 lg:py-2 bg-white/30 backdrop-blur-sm rounded-full text-xs lg:text-sm font-semibold">
-                  + {allServices.length - 6} more
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+      </div>
+    </div>
+  ))}
+</div>
+
+    {/* CTA Button */}
+    <div className="text-center mt-12">
+      <button 
+        onClick={() => scrollToSection('contact')}
+        className="inline-flex items-center space-x-2 px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+      >
+        <Calendar className="w-4 h-4 lg:w-5 lg:h-5" />
+        <span>Book Consultation for Any Condition</span>
+        <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
+      </button>
+    </div>
+  </div>
+</section>
 
       
 
@@ -910,15 +977,34 @@ const App = () => {
               <Phone className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />
             </div>
             <div>
-              <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Phone Number</h4>
-              <a
-                href="tel:+919650787854" // 更新为列表中的号码
-                className="text-lg lg:text-xl font-bold text-gray-900 hover:text-cyan-600 transition-colors block"
-              >
-                +91 99537 45006
-              </a>
-              <p className="text-xs lg:text-sm text-gray-500 mt-1">Call for appointment or consultation</p>
-            </div>
+  <h4 className="font-bold text-gray-900 mb-3 text-base lg:text-lg">
+    Phone Number
+  </h4>
+
+  {/* Call Button */}
+  <a
+    href="tel:+919953745006"
+    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white text-sm lg:text-base font-semibold px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 mb-3"
+  >
+    <Phone className="w-4 h-4 lg:w-5 lg:h-5" />
+    <span className="font-bold">+91 99537 45006</span>
+  </a>
+
+  {/* WhatsApp Button */}
+  <a
+    href="https://wa.me/919953745006"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-sm lg:text-base font-semibold px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+  >
+    <MessageCircle className="w-4 h-4 lg:w-5 lg:h-5" />
+    <span>Chat on WhatsApp</span>
+  </a>
+
+  <p className="text-xs lg:text-sm text-gray-500 mt-3 text-center">
+    Call or WhatsApp for appointment or consultation
+  </p>
+</div>
           </div>
 
           {/* Hours - 根据地图列表更新 */}
@@ -943,65 +1029,7 @@ const App = () => {
   </div>
 </section>
 
-      {/* Appointment CTA Section - Mobile optimized
-      <section id="appointment" className="py-12 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600"></div>
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-5 left-5 lg:top-10 lg:left-10 w-40 h-40 lg:w-64 lg:h-64 bg-white/10 rounded-full blur-xl lg:blur-3xl"></div>
-          <div className="absolute bottom-5 right-5 lg:bottom-10 lg:right-10 w-48 h-48 lg:w-80 lg:h-80 bg-white/10 rounded-full blur-xl lg:blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-6 px-4">Ready to Start Your Healing Journey?</h2>
-            <p className="text-base lg:text-xl text-cyan-100 mb-8 lg:mb-12 max-w-2xl mx-auto px-4">
-              Book your appointment today and take the first step towards natural, holistic healing
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-8 lg:mb-12">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-8 border border-white/20 hover:bg-white/20 transition-colors">
-                <PhoneCall className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6" />
-                <h3 className="text-lg lg:text-2xl font-bold mb-2 lg:mb-4">Call Now</h3>
-                <a 
-                  href={`tel:${contactInfo.phone}`} 
-                  className="text-xl lg:text-3xl font-bold hover:text-cyan-100 transition-colors block"
-                >
-                  {contactInfo.phone}
-                </a>
-              </div>
-              
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-8 border border-white/20 hover:bg-white/20 transition-colors">
-                <Calendar className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6" />
-                <h3 className="text-lg lg:text-2xl font-bold mb-2 lg:mb-4">Walk-in Visit</h3>
-                <p className="text-sm lg:text-lg">Monday - Saturday</p>
-                <p className="text-xl lg:text-2xl font-bold">10 AM - 9 PM</p>
-              </div>
-              
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-8 border border-white/20 hover:bg-white/20 transition-colors">
-                <Video className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6" />
-                <h3 className="text-lg lg:text-2xl font-bold mb-2 lg:mb-4">Online Consultation</h3>
-                <p className="text-sm lg:text-lg">Video Call Available</p>
-                <p className="text-xl lg:text-2xl font-bold">Book Online</p>
-              </div>
-            </div>
-            
-            <div className="space-y-3 lg:space-y-4 px-4">
-              <button 
-                onClick={() => window.open(`tel:${contactInfo.phone}`, '_self')}
-                className="px-6 py-4 lg:px-12 lg:py-6 bg-white text-cyan-600 rounded-xl lg:rounded-2xl font-bold text-base lg:text-xl shadow-xl lg:shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 lg:space-x-3 mx-auto group w-full max-w-md"
-              >
-                <Phone className="w-4 h-4 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform" />
-                <span>Call for Immediate Appointment</span>
-                <ArrowRight className="w-3 h-3 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
-              </button>
-              
-              <p className="text-cyan-100/80 text-xs lg:text-sm">
-                Emergency consultations available outside clinic hours
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
+      
 
       {/* Enhanced Footer - Mobile optimized */}
       <footer className="bg-gray-900 text-white pt-12 lg:pt-16 pb-6 lg:pb-8">
