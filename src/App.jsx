@@ -1,5 +1,11 @@
 // App.jsx
 import React, { useState, useEffect } from 'react';
+import video1 from "./assets/v1.mp4";
+import video2 from "./assets/v2.mp4";
+import video3 from "./assets/v3.mp4";
+import video4 from "./assets/v4.mp4";
+import video5 from "./assets/v5.mp4";
+
 import { 
   Phone, MapPin, Clock, Mail, Star, Award, 
   Users, Shield, Calendar, ChevronRight, 
@@ -42,7 +48,7 @@ import {
   Battery, Sun as SunIcon, Moon as MoonIcon,
   CloudOff, Droplets as DropletsIcon,
   ThermometerSun, ThermometerSnowflake,
-  Tornado,  CloudDrizzle,
+  Tornado, CloudDrizzle,
   CloudMoon, Apple, Beef, Wheat,
   Candy, Coffee as CoffeeIcon, Truck as TruckIcon,
   Plus, Minus, ChevronLeft, ChevronDown,
@@ -50,7 +56,8 @@ import {
   RefreshCw, RotateCw, ZoomIn,
   ZoomOut, Maximize, Minimize,
   XCircle, CheckSquare, Square,
-  Circle, HelpCircle, Info
+  Circle, HelpCircle, Info,
+  ChevronUp
 } from 'lucide-react';
 
 const App = () => {
@@ -58,6 +65,7 @@ const App = () => {
   const [activeService, setActiveService] = useState('All');
   const [activeReview, setActiveReview] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showAllVideos, setShowAllVideos] = useState(false);
 
   // Handle scroll for navbar and active section
   useEffect(() => {
@@ -108,6 +116,110 @@ const App = () => {
     }
   };
 
+  // VideoCard Component
+  const VideoCard = ({ video, index, title, quote }) => {
+    const handleVideoPlay = (e) => {
+      e.preventDefault();
+      const videoElement = e.currentTarget.querySelector('video');
+      
+      if (videoElement.paused) {
+        videoElement.play();
+        const playButton = e.currentTarget.querySelector('.play-button-overlay');
+        if (playButton) {
+          playButton.style.opacity = '0';
+        }
+      } else {
+        videoElement.pause();
+        const playButton = e.currentTarget.querySelector('.play-button-overlay');
+        if (playButton) {
+          playButton.style.opacity = '1';
+        }
+      }
+    };
+
+    const handleVideoEnd = (e) => {
+      const container = e.target.closest('.video-container');
+      const playButton = container?.querySelector('.play-button-overlay');
+      if (playButton) {
+        playButton.style.opacity = '1';
+      }
+    };
+
+    const handleVideoPause = (e) => {
+      const container = e.target.closest('.video-container');
+      const playButton = container?.querySelector('.play-button-overlay');
+      if (playButton) {
+        playButton.style.opacity = '1';
+      }
+    };
+
+    const handleVideoPlayEvent = (e) => {
+      const container = e.target.closest('.video-container');
+      const playButton = container?.querySelector('.play-button-overlay');
+      if (playButton) {
+        playButton.style.opacity = '0';
+      }
+    };
+
+    const openFullScreen = (e) => {
+      e.stopPropagation();
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4';
+      modal.innerHTML = `
+        <div class="relative w-full max-w-4xl">
+          <video src="${video}" controls autoplay class="w-full rounded-lg"></video>
+          <button class="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      `;
+      modal.querySelector('button').onclick = () => modal.remove();
+      document.body.appendChild(modal);
+    };
+
+    return (
+      <div className="video-item">
+        <div 
+          className="relative overflow-hidden rounded-xl lg:rounded-2xl mb-4 video-container group cursor-pointer"
+          onClick={handleVideoPlay}
+        >
+          <video 
+            src={video}
+            className="w-full h-full object-cover aspect-video"
+            poster={`https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&ix=${index}`}
+            preload="metadata"
+            onClick={(e) => e.stopPropagation()}
+            onEnded={handleVideoEnd}
+            onPause={handleVideoPause}
+            onPlay={handleVideoPlayEvent}
+            controls={false}
+          >
+            Your browser does not support the video tag.
+          </video>
+          <div className="play-button-overlay absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="w-0 h-0 border-t-[12px] lg:border-t-[14px] border-b-[12px] lg:border-b-[14px] border-l-[20px] lg:border-l-[24px] border-t-transparent border-b-transparent border-l-cyan-600 ml-1"></div>
+            </div>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+            <p className="text-white text-sm font-medium">{title}</p>
+          </div>
+        </div>
+        <div className="text-center">
+          <p className="text-sm text-gray-600">"{quote}"</p>
+          <button 
+            className="mt-2 text-xs text-cyan-600 hover:text-cyan-700 font-medium"
+            onClick={openFullScreen}
+          >
+            Open in full screen
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   // All services data
   const allServices = [
     "Asthma", "Chronic Pain", "Digestive", "Erectile Dysfunction", 
@@ -138,35 +250,62 @@ const App = () => {
   };
 
   // Reviews data
-  const reviews = [
-    {
-      name: "Rishabh Jauhari",
-      rating: 5,
-      date: "7 months ago",
-      content: "Dr Vikas is a really good doctor. He has great knowledge on various issues. I have had really bad knee pain and several other issues. He took time to understand the issue fully and then prescribed the medicines accordingly which helped tremendously.",
-      likes: 12,
-      response: "Thank you so much for taking the time to share your positive experience.",
-      reviewsCount: "4 reviews"
-    },
-    {
-      name: "Bharti Moudgill",
-      rating: 5,
-      date: "a year ago",
-      content: "Dr. Vikas is an excellent doctor. We consult him for our kids as well. He is caring for his patients and tries to find the root of the problem rather than just working on the symptoms superficially.",
-      likes: 8,
-      response: "Thanks so much for taking the time to share your positive experience. We are grateful for your review.",
-      reviewsCount: "3 reviews"
-    },
-    {
-      name: "Richa Kumari",
-      rating: 5,
-      date: "a year ago",
-      content: "Dr.Vikas is a very good, humble and polite doctor. He provides good treatment along with counselling and management. His dedication towards patient is appreciable.",
-      likes: 5,
-      response: "",
-      reviewsCount: "1 review"
-    }
-  ];
+ const reviews = [
+  {
+    name: "Nishant Sharma",
+    rating: 5,
+    date: "7 months ago",
+    content: "Dr. Vikas is a good, sincere and a learned doctor. Also, he is a good listener who gives his patients due time to explain their issues. He has treated me and my parents for different issues, thus, making him our go to family doctor now. As far as clinic is concerned, I have always found it clean & hygienic.",
+    likes: 12,
+    response: "Thank you so much for taking the time to share your positive experience.",
+    reviewsCount: "4 reviews"
+  },
+  {
+    name: "Shipra Wal",
+    rating: 5,
+    date: "a year ago",
+    content: "Best Doctor I've Ever Had! Dr. Vikas is truly exceptional. From the moment I walked into the clinic, I felt welcomed and cared for. They take the time to listen, explain everything clearly, and never make you feel rushed. Their knowledge, professionalism, and genuine compassion set them apart from others. I felt completely confident in their diagnosis and treatment plan. I’m so grateful to have found such a dedicated and trustworthy doctor. Highly recommend!",
+    likes: 8,
+    response: "Thanks so much for taking the time to share your positive experience. We are grateful for your review.",
+    reviewsCount: "3 reviews"
+  },
+  {
+    name: "Kunal Yadav",
+    rating: 5,
+    date: "5 months ago",
+    content: "Had consulted Dr Tonger when my kid was diagnosed with Dengue. He was the only one who was calm and confidant that she will recover very soon. Even monitored her progress very professionally , the only homeopathic doctor I have seen who give this kind of personal attention to their patients. Never offended and replied every call even at mid night. Keep up the good work Dr Vikas Tonger. These are the doctors who would take homeopathy to a next level and it will not remain an alternative healing practise , but will go hand in hand with allopathy. Kudos for his team.",
+    likes: 10,
+    response: "",
+    reviewsCount: "7 reviews"
+  },
+  {
+    name: "Priya Sharma",
+    rating: 5,
+    date: "2 months ago",
+    content: "Dr. Vikas Garg is a very humble and caring doctor. He explains everything clearly and ensures the patient is comfortable. The clinic is well-maintained and staff is cooperative.",
+    likes: 6,
+    response: "Thank you for your kind words.",
+    reviewsCount: "2 reviews"
+  },
+  {
+    name: "Rohit Verma",
+    rating: 5,
+    date: "1 year ago",
+    content: "Experienced and trustworthy doctor. He doesn’t prescribe unnecessary medicines and focuses on genuine recovery. Our family has been visiting him for years.",
+    likes: 4,
+    response: "",
+    reviewsCount: "1 review"
+  },
+  {
+    name: "Neha Gupta",
+    rating: 5,
+    date: "8 months ago",
+    content: "Dr. Vikas is very professional and compassionate. He listens carefully and gives practical advice along with medication. The clinic is hygienic and well-organized.",
+    likes: 9,
+    response: "We appreciate your feedback!",
+    reviewsCount: "5 reviews"
+  }
+];
 
   // Stats data
   const stats = [
@@ -193,15 +332,15 @@ const App = () => {
     { label: 'Services', href: '#services' },
     { label: 'Reviews', href: '#reviews' },
     { label: 'Contact', href: '#contact' },
-    { label: 'Book Now', href: '#appointment', isHighlighted: true }
+
   ];
 
   // Contact details
   const contactInfo = {
     address: "First floor, icon, extension, Techzone 4, Amrapali Leisure Valley, Noida, Greater Noida, Uttar Pradesh 201318",
-    phone: "096507 87854",
+    phone: "9953745006",
     website: "vikashomeopathy.com",
-    hours: "Open · Closes 9 PM"
+    hours: "Tuesday - Sunday 10am-2pm & 5pm-9pm Monday Closed"
   };
 
   // Google Maps iframe
@@ -217,6 +356,22 @@ const App = () => {
 </iframe>
 `;
 
+  // Video data
+  const videoFiles = [video1, video2, video3, video4, video5];
+  const videoTitles = [
+    "PCOS Success Story",
+    "Migraine Relief Journey", 
+    "Skin Condition Recovery",
+    "Allergy Treatment",
+    "Digestive Issues"
+  ];
+  const videoQuotes = [
+    "After 5 years of struggle...",
+    "Finally migraine-free after 8 years",
+    "Clear skin after homeopathy",
+    "Seasonal allergies cured naturally",
+    "IBD symptoms significantly improved"
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-cyan-50 font-sans scroll-smooth overflow-x-hidden">
@@ -296,9 +451,9 @@ const App = () => {
         <div className="absolute bottom-10 left-10 lg:bottom-20 lg:left-20 w-48 h-48 lg:w-96 lg:h-96 bg-blue-300/10 rounded-full blur-2xl lg:blur-3xl"></div>
         
         <div className="container mx-auto px-4 sm:px-6 py-10 lg:py-5 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8  lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Text Content */}
-            <div className="space-y-6 lg:space-y-8 order-1 ">
+            <div className="space-y-6 lg:space-y-8 order-1">
               {/* Badge */}
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-2xl border border-cyan-200">
                 <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
@@ -307,7 +462,7 @@ const App = () => {
               
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight -mt-4 lg:-mt-6">
-                Your Family’s 
+                Your Family's 
                 <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                   Trusted Homeopathy Clinic
                 </span>
@@ -315,21 +470,20 @@ const App = () => {
               
               {/* Subtitle */}
               <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl -mt-3 lg:-mt-5">
-                Safe, gentle homeopathy for all ages by Dr Vikas Tonger. Root cause treatment for lasting releif.
+                Safe, gentle homeopathy for all ages by Dr Vikas Tonger. Root cause treatment for lasting relief.
               </p>
               
-              {/* Stats - Mobile grid */}
-             
               {/* CTA Buttons - Mobile stacked */}
               <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-4 lg:pt-6">
-                <button 
-                  onClick={() => scrollToSection('appointment')}
-                  className="group px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 lg:space-x-3 text-sm lg:text-base"
-                >
-                  <Calendar className="w-4 h-4 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform" />
-                  <span>Book Appointment</span>
-                  <ArrowRight className="w-3 h-3 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
-                </button>
+                <a
+  href="tel:09650787854"
+  className="group px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 lg:space-x-3 text-sm lg:text-base"
+>
+  <Calendar className="w-4 h-4 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform" />
+  <span>Book Appointment</span>
+  <ArrowRight className="w-3 h-3 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
+</a>
+
                 <button 
                   onClick={() => scrollToSection('services')}
                   className="px-6 py-3 lg:px-8 lg:py-4 bg-white text-gray-800 border-2 border-cyan-200 rounded-xl lg:rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:border-cyan-400 hover:scale-105 transition-all duration-300 text-sm lg:text-base"
@@ -340,11 +494,10 @@ const App = () => {
             </div>
 
             {/* Right Image Content - Mobile adjusted */}
-            <div className="relative order-2  mb-8 lg:mb-0 p-5">
+            <div className="relative order-2 mb-8 lg:mb-0 p-5">
               {/* Main Image Container */}
-              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 h-100 ">
-              <img src='/images/ok.avif' className='object-cover h-100 w-full'/> 
-            
+              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 h-100">
+                <img src='/images/img.jpeg' className='object-cover h-100 w-full' alt="Clinic interior" /> 
               </div>
 
               {/* Floating Elements - Hidden on small mobile */}
@@ -418,31 +571,182 @@ const App = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-4 lg:gap-6 mt-8 lg:mt-0">
-              <div className="space-y-4 lg:space-y-6">
-                <div className="bg-gradient-to-br from-cyan-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-cyan-100">
-                  <div className="text-2xl lg:text-4xl font-bold text-cyan-600 mb-1 lg:mb-2">5000+</div>
-                  <div className="text-sm lg:text-base text-gray-700">Patients Treated Successfully</div>
-                </div>
-                <div className="bg-gradient-to-br from-blue-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-blue-100">
-                  <div className="text-2xl lg:text-4xl font-bold text-blue-600 mb-1 lg:mb-2">40+</div>
-                  <div className="text-sm lg:text-base text-gray-700">Health Conditions Treated</div>
-                </div>
+            <div className="space-y-4 lg:space-y-6 mt-8 lg:mt-0">
+              <div className="bg-gradient-to-br from-cyan-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-cyan-100">
+                <div className="text-2xl lg:text-4xl font-bold text-cyan-600 mb-1 lg:mb-2">5000+</div>
+                <div className="text-sm lg:text-base text-gray-700">Patients treated successfully</div>
               </div>
-              <div className="space-y-4 lg:space-y-6 pt-8 lg:pt-12">
-                <div className="bg-gradient-to-br from-cyan-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-cyan-100">
-                  <div className="text-2xl lg:text-4xl font-bold text-cyan-600 mb-1 lg:mb-2">18+</div>
-                  <div className="text-sm lg:text-base text-gray-700">Years of Experience</div>
-                </div>
-                <div className="bg-gradient-to-br from-blue-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-blue-100">
-                  <div className="text-2xl lg:text-4xl font-bold text-blue-600 mb-1 lg:mb-2">98%</div>
-                  <div className="text-sm lg:text-base text-gray-700">Patient Satisfaction Rate</div>
-                </div>
+              
+              <div className="bg-gradient-to-br from-blue-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-blue-100">
+                <div className="text-2xl lg:text-4xl font-bold text-blue-600 mb-1 lg:mb-2">100+</div>
+                <div className="text-sm lg:text-base text-gray-700">Children Saved From Adenoid Surgery</div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-cyan-50 to-white p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg border border-cyan-100">
+                <div className="text-2xl lg:text-4xl font-bold text-cyan-600 mb-1 lg:mb-2">500+</div>
+                <div className="text-sm lg:text-base text-gray-700">Women Treated For Gynaecology Problems (Pcos, Ovarian Cyst, Uterine Fibroid, Leucorrhea, Infertility etc.)</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+
+{/* Reviews & Testimonials Section - Enhanced UI */}
+      <section id="reviews" className="py-12 lg:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-16">
+            <div className="inline-flex items-center justify-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
+              <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
+              <span className="font-semibold text-xs lg:text-sm tracking-wider">PATIENT TESTIMONIALS</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
+              Success Stories That 
+              <span className="text-cyan-600"> Inspire Hope</span>
+            </h2>
+            <p className="text-base lg:text-lg text-gray-600">
+              Real experiences from patients who found relief through our holistic approach
+            </p>
+          </div>
+
+          {/* Video Testimonials Section */}
+          <div className="mb-12 lg:mb-16">
+            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8 text-center">Video Testimonials</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {videoFiles.map((video, index) => (
+                // Show only first 3 videos initially, or all if showAllVideos is true
+                (showAllVideos || index < 3) && (
+                  <VideoCard 
+                    key={index}
+                    video={video}
+                    index={index}
+                    title={videoTitles[index]}
+                    quote={videoQuotes[index]}
+                  />
+                )
+              ))}
+            </div>
+            
+            {/* Show All Videos Button - Only show if there are more than 3 videos */}
+            {!showAllVideos && videoFiles.length > 3 && (
+              <div className="text-center mt-8 lg:mt-12">
+                <button 
+                  className="px-6 lg:px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] flex items-center space-x-2 mx-auto"
+                  onClick={() => setShowAllVideos(true)}
+                >
+                  <Video className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <span>Show All Videos </span>
+                </button>
+              </div>
+            )}
+            
+            {/* Show Less Button - When all videos are shown */}
+            {showAllVideos && (
+              <div className="text-center mt-8 lg:mt-12">
+                <button 
+                  className="px-6 lg:px-8 py-3 border border-cyan-600 text-cyan-600 font-medium rounded-xl hover:bg-cyan-50 transition-all duration-300 flex items-center space-x-2 mx-auto"
+                  onClick={() => setShowAllVideos(false)}
+                >
+                  <ChevronUp className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <span>Show Less Videos</span>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Text Reviews Section */}
+          <div className="mb-8 lg:mb-12">
+            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8 text-center">Patient Reviews</h3>
+            
+            {/* Compact Reviews Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+              {reviews.map((review, index) => (
+                <div 
+                  key={index} 
+                  className="bg-white rounded-xl lg:rounded-xl shadow-md p-4 lg:p-5 border border-gray-100 hover:shadow-lg transition-all duration-300 hover:border-cyan-100"
+                >
+                  {/* Compact Review Header */}
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <User className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 text-xs lg:text-sm truncate max-w-[120px]">{review.name}</h4>
+                        <p className="text-xs text-gray-400">{review.reviewsCount}</p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Compact Review Content */}
+                  <div className="mb-3">
+                    <p className="text-xs lg:text-sm text-gray-600 line-clamp-3">"{review.content}"</p>
+                  </div>
+                  
+                  {/* Compact Review Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                    <span className="text-xs text-gray-400">{review.date}</span>
+                    <div className="flex items-center space-x-2">
+                      <button className="flex items-center space-x-1 text-gray-400 hover:text-cyan-600 transition-colors">
+                        <ThumbsUp className="w-3 h-3" />
+                        <span className="text-xs">{review.likes}</span>
+                      </button>
+                      <button className="text-gray-400 hover:text-cyan-600 transition-colors">
+                        <Share2 className="w-3 h-3" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* Doctor Response - Smaller */}
+                  {review.response && (
+                    <div className="mt-3 pt-3 border-t border-cyan-50 bg-cyan-50/30 rounded-lg p-2">
+                      <div className="flex items-start space-x-1">
+                        <MessageCircle className="w-3 h-3 text-cyan-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-xs font-medium text-gray-900 mb-0.5">Dr. Vikas</p>
+                          <p className="text-xs text-gray-600 line-clamp-2">{review.response}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          
+          {/* Stats Banner */}
+          <div className="mt-12 lg:mt-16 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-6 lg:p-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+              <div className="text-center">
+                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">4.9★</div>
+                <div className="text-xs lg:text-sm text-gray-600">Google Rating</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">{videoFiles.length}</div>
+                <div className="text-xs lg:text-sm text-gray-600">Video Testimonials</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">2K+</div>
+                <div className="text-xs lg:text-sm text-gray-600">Text Reviews</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">98%</div>
+                <div className="text-xs lg:text-sm text-gray-600">Satisfaction Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
 
       {/* Services Section - Mobile optimized */}
       <section id="services" className="py-12 lg:py-20 bg-gradient-to-b from-white to-cyan-50">
@@ -490,12 +794,7 @@ const App = () => {
                   )}
                 </ul>
                 
-                <div className="pt-4 lg:pt-6 border-t border-cyan-100">
-                  <button className="text-cyan-600 font-semibold flex items-center space-x-1 lg:space-x-2 group-hover:text-cyan-700 text-sm lg:text-base">
-                    <span>Learn More</span>
-                    <ArrowRight className="w-3 h-3 lg:w-4 lg:h-4 group-hover:translate-x-2 transition-transform" />
-                  </button>
-                </div>
+                
               </div>
             ))}
           </div>
@@ -522,210 +821,129 @@ const App = () => {
         </div>
       </section>
 
-      {/* Reviews Section - Mobile optimized */}
-      <section id="reviews" className="py-12 lg:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-16">
-            <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
-              <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
-              <span className="font-semibold text-xs lg:text-sm">PATIENT TESTIMONIALS</span>
+      
+
+      {/* Contact & Map Section - Mobile optimized */}
+<section id="contact" className="py-12 lg:py-20 bg-gradient-to-br from-cyan-50 to-blue-50 p-4 lg:p-5">
+  <div className="container mx-auto px-4">
+    <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-16">
+      <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
+        <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
+        <span className="font-semibold text-xs lg:text-sm">VISIT US</span>
+      </div>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
+        Get In
+        <span className="text-cyan-600"> Touch</span>
+      </h2>
+      <p className="text-base lg:text-lg text-gray-600 px-4">
+        Visit our clinic for personalized consultation or contact us for more information
+      </p>
+    </div>
+
+    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+      {/* Map Section - Left */}
+      <div className="bg-white rounded-xl lg:rounded-3xl shadow-lg lg:shadow-2xl overflow-hidden">
+        <div className="p-4 lg:p-6 border-b border-cyan-100 bg-gradient-to-r from-cyan-50 to-white">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 lg:w-10 lg:h-10 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center">
+              <Map className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
-              What Our 
-              <span className="text-cyan-600"> Patients</span> Say
-            </h2>
-            <p className="text-base lg:text-lg text-gray-600 px-4">
-              Real stories from people who found healing through our homeopathic care
-            </p>
+            <div>
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900">Our Location</h3>
+              <p className="text-xs lg:text-sm text-gray-600">Find us easily on Google Maps</p>
+            </div>
           </div>
+        </div>
+        <div className="h-[300px] lg:h-[500px] relative">
+          {/* 地图嵌入代码已根据提供的链接更新 */}
+          <div className="w-full h-[400px] lg:h-[500px]">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3491.291230197526!2d77.43753759121178!3d28.587409214066454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef005a40bee3%3A0x29e7ff58ed949a3a!2sAesthederm%20Homeopathy%20Clinic--Homeopathy%20Doctor!5e0!3m2!1sen!2sin!4v1767961312258!5m2!1sen!2sin"
+    className="w-full h-full rounded-xl"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  />
+</div>
 
-          {/* Reviews Grid - Mobile stacked */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-            {reviews.map((review, index) => (
-              <div 
-                key={index} 
-                className="bg-gradient-to-br from-white to-cyan-50 rounded-xl lg:rounded-2xl shadow-lg lg:shadow-xl p-4 lg:p-8 border border-cyan-100 hover:shadow-xl lg:hover:shadow-2xl transition-all duration-300 group"
-              >
-                {/* Review Header */}
-                <div className="flex items-start justify-between mb-4 lg:mb-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-lg lg:rounded-xl flex items-center justify-center">
-                      <User className="w-5 h-5 lg:w-6 lg:h-6 text-cyan-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm lg:text-lg">{review.name}</h4>
-                      <p className="text-xs lg:text-sm text-gray-500">{review.reviewsCount}</p>
-                    </div>
-                  </div>
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 lg:w-5 lg:h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Review Content */}
-                <div className="relative mb-4 lg:mb-6">
-                  <Quote className="absolute -top-1 -left-1 lg:-top-2 lg:-left-2 w-6 h-6 lg:w-8 lg:h-8 text-cyan-200" />
-                  <p className="text-sm lg:text-base text-gray-600 italic pl-4">"{review.content}"</p>
-                </div>
-                
-                {/* Review Footer */}
-                <div className="flex items-center justify-between pt-4 lg:pt-6 border-t border-cyan-100">
-                  <span className="text-xs lg:text-sm text-gray-500">{review.date}</span>
-                  <div className="flex items-center space-x-3 lg:space-x-4">
-                    <button className="flex items-center space-x-1 text-gray-500 hover:text-cyan-600 transition-colors">
-                      <ThumbsUp className="w-3 h-3 lg:w-4 lg:h-4" />
-                      <span className="text-xs lg:text-sm">{review.likes}</span>
-                    </button>
-                    <button className="text-gray-500 hover:text-cyan-600 transition-colors">
-                      <Share2 className="w-3 h-3 lg:w-4 lg:h-4" />
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Doctor Response */}
-                {review.response && (
-                  <div className="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-cyan-100 bg-cyan-50/50 rounded-lg lg:rounded-xl p-3 lg:p-4">
-                    <div className="flex items-start space-x-2 lg:space-x-3">
-                      <MessageCircle className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="text-xs lg:text-sm font-semibold text-gray-900 mb-1">Response from Dr. Vikas</p>
-                        <p className="text-xs lg:text-sm text-gray-600">{review.response}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Google Reviews Link */}
-          <div className="text-center mt-8 lg:mt-12">
-            <a 
-              href="#" 
-              className="inline-flex items-center space-x-2 text-cyan-600 font-semibold hover:text-cyan-700 text-sm lg:text-base"
+          {/* Overlay Button */}
+          <div className="absolute bottom-3 lg:bottom-4 left-1/2 transform -translate-x-1/2">
+            <a
+              href="https://maps.app.goo.gl/2XPEhcsqAWtsDtGK9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg font-semibold text-gray-900 hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 text-sm lg:text-base"
             >
-              <span>View All Reviews on Google</span>
-              <ExternalLink className="w-3 h-3 lg:w-4 lg:h-4" />
+              <Navigation className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
+              <span>Get Directions</span>
             </a>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Contact & Map Section - Mobile optimized */}
-      <section id="contact" className="py-12 lg:py-20 bg-gradient-to-br from-cyan-50 to-blue-50 p-4 lg:p-5">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-16">
-            <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
-              <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
-              <span className="font-semibold text-xs lg:text-sm">VISIT US</span>
+      {/* Contact Details - Right */}
+      <div className="bg-white rounded-xl lg:rounded-3xl shadow-lg lg:shadow-2xl p-4 lg:p-8">
+        <div className="mb-6 lg:mb-8">
+          <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">Contact Information</h3>
+          <p className="text-sm lg:text-base text-gray-600">Reach out to us for appointments or inquiries</p>
+        </div>
+
+        <div className="space-y-4 lg:space-y-6">
+          {/* Address - 根据地图列表更新 */}
+          <div className="flex items-start space-x-3 lg:space-x-4 p-4 lg:p-6 bg-gradient-to-r from-cyan-50 to-white rounded-xl lg:rounded-2xl border border-cyan-100 hover:border-cyan-300 transition-colors group">
+            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <MapPin className="w-5 h-5 lg:w-6 lg:h-6 text-cyan-600" />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
-              Get In 
-              <span className="text-cyan-600"> Touch</span>
-            </h2>
-            <p className="text-base lg:text-lg text-gray-600 px-4">
-              Visit our clinic for personalized consultation or contact us for more information
-            </p>
+            <div>
+              <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Clinic Address</h4>
+              {/* 此处使用了地图列表中的地址，实际完整地址可能需要在Google后台查看 */}
+              <p className="text-sm lg:text-base text-gray-600">
+                 Aesthederm Homeopathy Clinic, Shop no- 24 & 25, First Floor, Amrapali Icon Leisure Valley, Noida Extension, Greater Noida, 201306
+              </p>
+            </div>
           </div>
-          
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-            {/* Map Section - Left */}
-            <div className="bg-white rounded-xl lg:rounded-3xl shadow-lg lg:shadow-2xl overflow-hidden">
-              <div className="p-4 lg:p-6 border-b border-cyan-100 bg-gradient-to-r from-cyan-50 to-white">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center">
-                    <Map className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg lg:text-xl font-bold text-gray-900">Our Location</h3>
-                    <p className="text-xs lg:text-sm text-gray-600">Find us easily on Google Maps</p>
-                  </div>
-                </div>
-              </div>
-              <div className="h-[300px] lg:h-[500px] relative">
-                <div 
-                  className="w-full h-full"
-                  dangerouslySetInnerHTML={{ __html: mapIframe }}
-                />
-                {/* Overlay Button */}
-                <div className="absolute bottom-3 lg:bottom-4 left-1/2 transform -translate-x-1/2">
-                  <a 
-  href="https://www.google.com/maps/place/Aesthederm+Homeopathy+Clinic--Homeopathy+Doctor/@28.5875894,77.4379428,17z"
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="bg-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl shadow-lg font-semibold text-gray-900 hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 text-sm lg:text-base"
->
-  <Navigation className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-  <span>Get Directions</span>
-</a>
 
-                </div>
-              </div>
+          {/* Phone - 根据地图列表更新 */}
+          <div className="flex items-start space-x-3 lg:space-x-4 p-4 lg:p-6 bg-gradient-to-r from-blue-50 to-white rounded-xl lg:rounded-2xl border border-blue-100 hover:border-blue-300 transition-colors group">
+            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <Phone className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />
             </div>
-            
-            {/* Contact Details - Right */}
-            <div className="bg-white rounded-xl lg:rounded-3xl shadow-lg lg:shadow-2xl p-4 lg:p-8">
-              <div className="mb-6 lg:mb-8">
-                <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">Contact Information</h3>
-                <p className="text-sm lg:text-base text-gray-600">Reach out to us for appointments or inquiries</p>
-              </div>
-              
-              <div className="space-y-4 lg:space-y-6">
-                {/* Address */}
-                <div className="flex items-start space-x-3 lg:space-x-4 p-4 lg:p-6 bg-gradient-to-r from-cyan-50 to-white rounded-xl lg:rounded-2xl border border-cyan-100 hover:border-cyan-300 transition-colors group">
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <MapPin className="w-5 h-5 lg:w-6 lg:h-6 text-cyan-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Address</h4>
-                    <p className="text-sm lg:text-base text-gray-600">{contactInfo.address}</p>
-                  </div>
-                </div>
-                
-                {/* Phone */}
-                <div className="flex items-start space-x-3 lg:space-x-4 p-4 lg:p-6 bg-gradient-to-r from-blue-50 to-white rounded-xl lg:rounded-2xl border border-blue-100 hover:border-blue-300 transition-colors group">
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Phone className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Phone Number</h4>
-                    <a 
-                      href={`tel:${contactInfo.phone}`} 
-                      className="text-lg lg:text-xl font-bold text-gray-900 hover:text-cyan-600 transition-colors block"
-                    >
-                      {contactInfo.phone}
-                    </a>
-                    <p className="text-xs lg:text-sm text-gray-500 mt-1">Call for appointment or consultation</p>
-                  </div>
-                </div>
-                
-                {/* Hours */}
-                <div className="flex items-start space-x-3 lg:space-x-4 p-4 lg:p-6 bg-gradient-to-r from-cyan-50 to-white rounded-xl lg:rounded-2xl border border-cyan-100 hover:border-cyan-300 transition-colors group">
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Clock className="w-5 h-5 lg:w-6 lg:h-6 text-cyan-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Clinic Hours</h4>
-                    <p className="text-sm lg:text-base text-gray-600 font-semibold">{contactInfo.hours}</p>
-                    <div className="grid grid-cols-2 gap-2 mt-3 text-xs lg:text-sm">
-                      <div className="text-gray-600">Monday - Friday</div>
-                      <div className="font-semibold">10 AM - 9 PM</div>
-                      <div className="text-gray-600">Saturday</div>
-                      <div className="font-semibold">10 AM - 9 PM</div>
-                      <div className="text-gray-600">Sunday</div>
-                      <div className="font-semibold">Emergency Only</div>
-                    </div>
-                  </div>
-                </div>
+            <div>
+              <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Phone Number</h4>
+              <a
+                href="tel:+919650787854" // 更新为列表中的号码
+                className="text-lg lg:text-xl font-bold text-gray-900 hover:text-cyan-600 transition-colors block"
+              >
+                +91 99537 45006
+              </a>
+              <p className="text-xs lg:text-sm text-gray-500 mt-1">Call for appointment or consultation</p>
+            </div>
+          </div>
+
+          {/* Hours - 根据地图列表更新 */}
+          <div className="flex items-start space-x-3 lg:space-x-4 p-4 lg:p-6 bg-gradient-to-r from-cyan-50 to-white rounded-xl lg:rounded-2xl border border-cyan-100 hover:border-cyan-300 transition-colors group">
+            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-100 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <Clock className="w-5 h-5 lg:w-6 lg:h-6 text-cyan-600" />
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">Clinic Hours</h4>
+              <p className="text-sm lg:text-base text-gray-600 font-semibold">Open · Closes 9:00 PM</p>
+              <div className="grid grid-cols-2 gap-2 mt-3 text-xs lg:text-sm">
+                <div className="text-gray-600">Tuesday - Sunday</div>
+                <div className="font-semibold">10 AM - 2 PM & 5 PM - 9 PM</div>
+                <div className="text-gray-600">Monday</div>
+                <div className="font-semibold">Closed</div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* Appointment CTA Section - Mobile optimized */}
+      {/* Appointment CTA Section - Mobile optimized
       <section id="appointment" className="py-12 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600"></div>
         <div className="absolute top-0 left-0 w-full h-full">
@@ -783,7 +1001,7 @@ const App = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Enhanced Footer - Mobile optimized */}
       <footer className="bg-gray-900 text-white pt-12 lg:pt-16 pb-6 lg:pb-8">
@@ -836,14 +1054,11 @@ const App = () => {
             <div className="mt-6 lg:mt-0">
               <h4 className="text-base lg:text-lg font-bold mb-4 lg:mb-6 text-white">Contact Info</h4>
               <ul className="space-y-3 lg:space-y-4">
-                <li className="flex items-start space-x-3">
-                  <MapPin className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-400 text-xs lg:text-sm">{contactInfo.address}</span>
-                </li>
+                <p className='text-gray-400 text-xs lg:text-sm'>Aesthederm Homeopathy Clinic, Shop no- 24 & 25, First Floor, Amrapali Icon Leisure Valley, Noida Extension, Greater Noida, 201306</p>
                 <li className="flex items-center space-x-3">
                   <Phone className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-400" />
                   <a href={`tel:${contactInfo.phone}`} className="text-gray-400 hover:text-cyan-400 text-xs lg:text-sm">
-                    {contactInfo.phone}
+                    Mob- 9953745006
                   </a>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -857,17 +1072,14 @@ const App = () => {
               <h4 className="text-base lg:text-lg font-bold mb-4 lg:mb-6 text-white">Clinic Hours</h4>
               <div className="space-y-2 lg:space-y-3 text-gray-400 text-xs lg:text-sm">
                 <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span className="font-semibold text-white">10 AM - 9 PM</span>
+                  <span>Tuesday - Sunday</span>
+                  <span className="font-semibold text-white">10am - 2pm & 5pm - 9pm</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span className="font-semibold text-white">10 AM - 9 PM</span>
+                  <span>Monday</span>
+                  <span className="font-semibold text-white">Close</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span className="font-semibold text-white">Emergency Only</span>
-                </div>
+                
               </div>
             </div>
           </div>
