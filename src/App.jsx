@@ -8,6 +8,7 @@ import video5 from "./assets/v5.mp4";
 import video6 from "./assets/v6.mp4";
 import video7 from "./assets/v7.mp4";
 import video8 from "./assets/v8.mp4";
+import logo from "/images/logo.jpeg"
 
 import { 
   Phone, MapPin, Clock, Mail, Star, Award, 
@@ -313,14 +314,6 @@ const App = () => {
     }
   ];
 
-  // Stats data
-  const stats = [
-    { number: "18+", label: "Years Experience", icon: <Award className="w-8 h-8" /> },
-    { number: "500+", label: "Patients Treated", icon: <Users className="w-8 h-8" /> },
-    { number: "98%", label: "Satisfaction Rate", icon: <Heart className="w-8 h-8" /> },
-    { number: "40+", label: "Conditions Treated", icon: <Stethoscope className="w-8 h-8" /> }
-  ];
-
   // Amenities data
   const amenities = [
     { icon: <Droplet className="w-5 h-5" />, text: "Wheelchair-accessible car park" },
@@ -379,15 +372,27 @@ const App = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo - Mobile optimized */}
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                <FlaskConical className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg lg:text-2xl font-bold text-gray-800 leading-tight">Aesthederm Homeopathy Clinic</h1>
-                <p className="text-xs lg:text-sm text-cyan-600 font-medium hidden sm:block">Holistic Healing</p>
-              </div>
-            </div>
+            
+<div className="flex items-center space-x-3">
+  {/* Circular Logo */}
+  <div className="p-[2px] bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full shadow-lg">
+    <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full flex items-center justify-center">
+      <img
+        src={logo}
+        alt="Aesthederm Logo"
+        className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
+      />
+    </div>
+  </div>
+
+  {/* Text */}
+  <div>
+    <h1 className="text-lg lg:text-2xl font-bold text-gray-800 leading-tight">
+      Aesthederm Homeopathy Clinic
+    </h1>
+  </div>
+</div>
+
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-1 bg-white/80 backdrop-blur-sm rounded-2xl px-2 py-2 shadow-sm">
@@ -451,11 +456,7 @@ const App = () => {
         
         <div className="container mx-auto px-4 sm:px-6 py-10 lg:py-5 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-2xl border border-cyan-200 mb-6 lg:mb-8">
-              <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-              <span className="font-semibold text-gray-700 text-xs lg:text-sm">Trusted by 500+ Patients Since 2005</span>
-            </div>
+            
             
             {/* Main Heading */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4 lg:mb-6">
@@ -473,7 +474,7 @@ const App = () => {
             {/* CTA Buttons - Centered */}
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center pt-4 lg:pt-6">
               <a
-                href="tel:09650787854"
+                href="tel:9953745006"
                 className="group px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 lg:space-x-3 text-sm lg:text-base"
               >
                 <Calendar className="w-4 h-4 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform" />
@@ -492,162 +493,433 @@ const App = () => {
         </div>
       </section>
 
-      {/* About Dr Section */}
-      <section id="about" className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Doctor's Image - Left Side */}
-            <div className="relative">
-              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-                <img 
-                  src='/images/img.jpeg' 
-                  className='w-full h-auto object-cover' 
-                  alt="Dr. Vikas Tonger - Homeopathy Specialist"
-                />
-              </div>
-              
-              {/* Floating Badge */}
-              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white p-4 lg:p-5 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl">
-                <div className="text-center">
-                  <div className="font-bold text-lg lg:text-xl">15+ Years</div>
-                  <div className="text-xs lg:text-sm opacity-90">Clinical Experience</div>
-                </div>
-              </div>
-            </div>
+      
+      {/* Reviews & Testimonials Section */}
+<section id="reviews" className="py-12 lg:py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-16">
+      <div className="inline-flex items-center justify-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
+        <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
+        <span className="font-semibold text-xs lg:text-sm tracking-wider">PATIENT TESTIMONIALS</span>
+      </div>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
+        Success Stories That 
+        <span className="text-cyan-600"> Inspire Hope</span>
+      </h2>
+      <p className="text-base lg:text-lg text-gray-600">
+        Real experiences from patients who found relief through our holistic approach
+      </p>
+    </div>
 
-            {/* Doctor's Info - Right Side */}
-            <div className="space-y-6 lg:space-y-8">
-              {/* Section Badge */}
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600/10 to-blue-600/10 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-2xl border border-cyan-200">
-                <User className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-                <span className="font-semibold text-gray-700 text-xs lg:text-sm">Meet Our Specialist</span>
-              </div>
-              
-              {/* Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                About
-                <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  Dr. Vikas Tonger
-                </span>
-              </h2>
-              
-              {/* Description */}
-              <div className="space-y-4 text-gray-600 text-base lg:text-lg leading-relaxed">
-                <p>
-                  Dr. Vikas Tonger is a trusted homeopathy specialist dedicated to holistic, root-cause–based healing. 
-                  He follows a practical, patient-focused approach designed for quick improvement and lasting results.
-                </p>
-                <p>
-                  With extensive clinical experience, Dr. Tonger treats a wide range of conditions including childhood 
-                  disorders, respiratory and digestive problems, women's health issues (such as PCOD, ovarian cysts, 
-                  uterine fibroids, and endometriosis), skin and hair conditions, joint pain, migraine, and other 
-                  chronic health concerns. His treatment approach is safe, personalised, and non-invasive.
-                </p>
-                <p>
-                  Based in Noida Extension, Dr. Tonger offers both in-clinic and online consultations, making quality 
-                  homeopathic care accessible to patients across India.
-                </p>
-              </div>
-              
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-                <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
-                  <div className="font-bold text-2xl lg:text-3xl text-cyan-600">5000+</div>
-                  <div className="text-sm text-gray-600 mt-1">Patients Treated</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
-                  <div className="font-bold text-2xl lg:text-3xl text-cyan-600">100%</div>
-                  <div className="text-sm text-gray-600 mt-1">Natural</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
-                  <div className="font-bold text-2xl lg:text-3xl text-cyan-600">15+</div>
-                  <div className="text-sm text-gray-600 mt-1">Years Experience</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl lg:rounded-2xl border border-cyan-100 shadow-sm text-center">
-                  <div className="font-bold text-2xl lg:text-3xl text-cyan-600">∞</div>
-                  <div className="text-sm text-gray-600 mt-1">Online Support</div>
-                </div>
-              </div>
-              
-              {/* CTA Button */}
-              <div className="pt-4">
-                <a
-                  href="tel:9953745006"
-                  className="inline-flex items-center space-x-2 px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl lg:rounded-2xl font-semibold shadow-lg lg:shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+    {/* Video Testimonials Section */}
+    <div className="mb-12 lg:mb-16">
+      <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8 text-center">Video Testimonials</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {videoFiles.map((video, index) => (
+          (showAllVideos || index < 3) && (
+            <div key={index} className="group bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-cyan-200">
+              {/* Video Container - Preserves Original Aspect Ratio */}
+              <div 
+                className="relative cursor-pointer bg-gray-100"
+                onClick={() => openVideoModal(video, videoTitles[index], videoQuotes[index])}
+              >
+                {/* Video Element - Plays inline with controls */}
+                <video
+                  src={video}
+                  className="w-full h-auto max-h-64 object-contain bg-black"
+                  poster={logo}
+                  preload="metadata"
+                  controls
+                  controlsList="nodownload"
+                  playsInline
+                  onPlay={(e) => {
+                    // Pause other videos when this one plays
+                    document.querySelectorAll('video').forEach(v => {
+                      if (v !== e.target) v.pause();
+                    });
+                  }}
                 >
-                  <Phone className="w-4 h-4 lg:w-5 lg:h-5" />
-                  <span>Consult Dr. Vikas Today</span>
-                  <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-2 transition-transform" />
-                </a>
+                  Your browser does not support the video tag.
+                </video>
+                
+                {/* Overlay with Title */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                  <h4 className="text-white font-bold text-sm line-clamp-1">
+                    {videoTitles[index]}
+                  </h4>
+                </div>
+              </div>
+              
+              {/* Video Info */}
+              <div className="p-4 lg:p-6">
+                <h4 className="font-bold text-gray-900 mb-2 text-lg lg:text-xl line-clamp-2">
+                  {videoTitles[index]}
+                </h4>
+                <p className="text-gray-600 text-sm lg:text-base line-clamp-3 mb-4">
+                  {videoQuotes[index]}
+                </p>
+                
+                {/* Open in Full Screen Button */}
+                <button 
+                  onClick={() => openVideoModal(video, videoTitles[index], videoQuotes[index])}
+                  className="w-full py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-[1.02] flex items-center justify-center space-x-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                  </svg>
+                  <span>Open in Full Screen</span>
+                </button>
               </div>
             </div>
-          </div>
+          )
+        ))}
+      </div>
+      
+      {/* Show All Videos Button */}
+      {!showAllVideos && videoFiles.length > 3 && (
+        <div className="text-center mt-8 lg:mt-12">
+          <button 
+            className="px-6 lg:px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] flex items-center space-x-2 mx-auto"
+            onClick={() => setShowAllVideos(true)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 lg:w-5 lg:h-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+            </svg>
+            <span>Show All Videos ({videoFiles.length})</span>
+          </button>
         </div>
-      </section>
+      )}
+      
+      {/* Show Less Button */}
+      {showAllVideos && (
+        <div className="text-center mt-8 lg:mt-12">
+          <button 
+            className="px-6 lg:px-8 py-3 border border-cyan-600 text-cyan-600 font-medium rounded-xl hover:bg-cyan-50 transition-all duration-300 flex items-center space-x-2 mx-auto"
+            onClick={() => setShowAllVideos(false)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 lg:w-5 lg:h-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+            </svg>
+            <span>Show Less Videos</span>
+          </button>
+        </div>
+      )}
+    </div>
+
+    
+
+    
+  </div>
+
+  {/* Fullscreen Video Modal */}
+  {isVideoModalOpen && selectedVideo && (
+    <div className="fixed inset-0 bg-black z-50 flex items-center justify-center p-4">
+      {/* Close Button */}
+      <button
+        onClick={closeVideoModal}
+        className="absolute top-4 right-4 lg:top-6 lg:right-6 z-50 w-10 h-10 lg:w-12 lg:h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300"
+      >
+        <X className="w-5 h-5 lg:w-6 lg:h-6" />
+      </button>
+      
+      {/* Video Container */}
+      <div className="relative w-full max-w-4xl h-auto">
+        <video
+          src={selectedVideo.video}
+          className="w-full h-auto max-h-[80vh] rounded-lg lg:rounded-xl shadow-2xl bg-black"
+          controls
+          autoPlay
+          controlsList="nodownload"
+        />
+        
+        {/* Video Info in Fullscreen */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 lg:p-6 rounded-b-lg lg:rounded-b-xl">
+          <h3 className="text-white font-bold text-lg lg:text-xl mb-2">{selectedVideo.title}</h3>
+          <p className="text-gray-200 text-sm lg:text-base">{selectedVideo.quote}</p>
+        </div>
+      </div>
+      
+      {/* Click outside to close */}
+      <div 
+        className="absolute inset-0 -z-10"
+        onClick={closeVideoModal}
+      />
+    </div>
+  )}
+</section>
+
+
+      {/* About Dr Section */}
+<section
+  id="about"
+  className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50"
+>
+  <div className="container mx-auto px-4 sm:px-6">
+
+    {/* Image + Content */}
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      {/* Doctor Image */}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-200 to-blue-200 blur-2xl opacity-30 rounded-3xl"></div>
+
+        <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl">
+          <img
+            src="/images/img.jpeg"
+            alt="Dr. Vikas Tonger - Homeopathy Specialist"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
+        
+      </div>
+
+      {/* Doctor Info */}
+      <div className="space-y-6 lg:space-y-8">
+
+        {/* Section Badge */}
+        <div className="inline-flex items-center gap-2 bg-cyan-50 px-4 py-2 rounded-full border border-cyan-200">
+          <User className="w-4 h-4 text-cyan-600" />
+          <span className="text-sm font-semibold text-gray-700">
+            Meet Our Specialist
+          </span>
+        </div>
+
+        {/* Heading */}
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+          About
+          <span className="block bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            Dr. Vikas Tonger
+          </span>
+        </h2>
+
+        {/* Description */}
+        <div className="space-y-5 text-gray-600 text-base lg:text-lg leading-relaxed">
+         <p className="text-gray-700 leading-relaxed">
+  <span className="font-semibold text-gray-900">
+    Dr. Vikas Tonger
+  </span>{" "}
+   is a trusted homeopathy specialist dedicated to holistic, root-cause–based healing. He follows a practical, patient-focused approach designed for quick improvement and lasting results.
+  <br /><br />
+  With extensive clinical experience, Dr. Tonger treats a wide range of conditions including childhood disorders, respiratory and digestive problems, women’s health issues (such as PCOD, ovarian cysts, uterine fibroids, and endometriosis etc), skin and hair conditions, joint pain, migraine, and other chronic health concerns. His treatment approach is safe, personalised, and non-invasive.
+  <br /><br />
+  Based in Noida Extension, Dr. Tonger offers both in-clinic and online consultations, making quality homeopathic care accessible to patients across India.
+</p>
+
+        </div>
+      </div>
+    </div>
+
+    {/* Stats Section – Mobile Friendly */}
+<div className="w-full flex flex-col gap-5 mt-12">
+
+  {/* Card 1 */}
+  <div className="w-full rounded-2xl p-5 
+    bg-gradient-to-r from-cyan-50 to-blue-50
+    border border-cyan-100 shadow-sm">
+    <div className="text-3xl font-bold text-cyan-600">
+      5000+ 
+    </div>
+    <p className="mt-2 text-gray-700 text-sm leading-relaxed">
+      Patient’s Treated Successful.
+    </p>
+  </div>
+
+  {/* Card 2 */}
+  <div className="w-full rounded-2xl p-5 
+    bg-gradient-to-r from-blue-50 to-cyan-50
+    border border-blue-100 shadow-sm">
+    <div className="text-3xl font-bold text-blue-600">
+      100+
+    </div>
+    <p className="mt-2 text-gray-700 text-sm leading-relaxed">
+      Children Saved From Adenoid Surgery.
+    </p>
+  </div>
+
+  {/* Card 3 */}
+  <div className="w-full rounded-2xl p-5 
+    bg-gradient-to-r from-cyan-50 to-blue-50
+    border border-cyan-100 shadow-sm">
+    <div className="text-3xl font-bold text-cyan-600">
+      500+
+    </div>
+    <p className="mt-2 text-gray-700 text-sm leading-relaxed">
+      Women Treated For Gynaecology Problems
+(Pcos, Ovarian Cyst, Uterine Fibroid, Leucorrhea, Infertility etc.)
+    </p>
+  </div>
+
+</div>
+
+
+  </div>
+</section>
+
+
 
       {/* Services Section - Full Width Vertical Layout */}
-      <section id="services" className="py-12 lg:py-20 bg-gradient-to-b from-white to-cyan-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-5xl mx-auto mb-8 lg:mb-16">
-            <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
-              <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
-              <span className="font-semibold text-xs lg:text-sm">OUR SERVICES</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
-              Comprehensive 
-              <span className="text-cyan-600"> Homeopathic</span> Care
-            </h2>
-            <p className="text-base lg:text-lg text-gray-600 px-4">
-              We offer holistic treatment for a wide range of acute and chronic conditions, 
-              focusing on restoring your body's natural balance.
-            </p>
+<section
+  id="services"
+  className="py-12 lg:py-20 bg-gradient-to-b from-white to-cyan-50"
+>
+  <div className="container mx-auto px-4">
+
+    {/* Heading */}
+    <div className="text-center max-w-5xl mx-auto mb-8 lg:mb-16">
+      <div className="inline-flex items-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
+        <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
+        <span className="font-semibold text-xs lg:text-sm">OUR SERVICES</span>
+      </div>
+
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
+        Comprehensive
+        <span className="text-cyan-600"> Homeopathic</span> Care
+      </h2>
+
+      <p className="text-base lg:text-lg text-gray-600 px-4">
+        We offer treatment for a wide range of acute and chronic
+        conditions, focusing on restoring your body's natural balance.
+      </p>
+    </div>
+
+    {/* Services Data */}
+    {/*
+      🧒 Paediatric
+      🫁 Respiratory
+      🦴 Musculo Skeletal
+      ✨ Skin & Hair
+      ❤️ Sexual Wellness
+      🌸 Female
+      🍽️ Digestive
+    */}
+    {Object.entries({
+        "🧒 Paediatric Care": [
+    "Enlarged Adenoids",
+    "Recurrent Infections",
+    "Tonsillitis",
+    "Allergies & Asthma",
+    "Constipation",
+    "Bedwetting",
+    "Boosting Immunity"
+  ],
+
+  "🌸 Women’s Health": [
+    "PCOD & PCOS",
+    "Ovarian Cysts",
+    "Uterine Fibroid",
+    "Leucorrhoea",
+    "Irregular & Painful Periods",
+    "Menopausal Support",
+    "Infertility"
+  ],
+
+  "🍽️ Digestive & Gut Healing": [
+    "Acidity & Heartburn",
+    "Gastric / Peptic Ulcers",
+    "Anal Fissures",
+    "Piles",
+    "IBS (Irritable Bowel Syndrome)",
+    "Constipation & Bowel Irregularities",
+    "Ulcerative Colitis",
+    "Fatty Liver",
+    "Gastritis"
+  ],
+
+  "🫁 Respiratory Health": [
+    "Asthma",
+    "Allergic Rhinitis",
+    "Bronchitis",
+    "Sinusitis",
+    "Chronic Cough",
+    "COPD",
+    "Nasal Polyps",
+    "Seasonal & Environmental Allergies"
+  ],
+
+  "🦴 Musculo-Skeletal Care": [
+    "Arthritis",
+    "Backache",
+    "Sciatica",
+    "Cervical Spondylosis",
+    "Frozen Shoulder",
+    "Knee Pain",
+    "Heel Pain",
+    "Gout"
+  ],
+
+  "✨ Skin & Hair": [
+    "Acne",
+    "Alopecia Areata",
+    "Dermatitis",
+    "Eczema",
+    "Psoriasis",
+    "Hair Fall",
+    "Vitiligo (Leucoderma)",
+    "Urticaria",
+    "Herpes",
+    "Ringworm (Fungal Infections)"
+  ],
+
+  "❤️ Sexual Wellness": [
+    "Erectile Dysfunction",
+    "Premature Ejaculation",
+    "Low Sexual Drive",
+    "Performance Anxiety",
+    "Spermatorrhea",
+    "Emotional Stress Affecting Sexual Health"
+  ]
+    }).map(([category, items], index) => (
+      <div
+        key={index}
+        className="mb-6 lg:mb-8 max-w-6xl mx-auto bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 lg:p-8 border border-cyan-100 hover:border-cyan-300"
+      >
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+
+          {/* Left Section */}
+          <div className="lg:w-1/4">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+              <span className="text-3xl lg:text-4xl">
+                {category.split(" ")[0]}
+              </span>
+              <span>
+                {category.replace(category.split(" ")[0], "").trim()}
+              </span>
+            </h3>
+
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+            >
+              <span>Get Treatment</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
-          {/* Services Vertical Stack - Compact */}
-          <div className="space-y-6 lg:space-y-8 max-w-6xl mx-auto">
-            {Object.entries(servicesByCategory).map(([category, items], index) => (
-              <div 
-                key={index}
-                className="group bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-6 lg:p-8 border border-cyan-100 hover:border-cyan-300"
-              >
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-8">
-                  {/* Left Section - Category Title */}
-                  <div className="lg:w-1/4">
-                    <div className="mb-4">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-2">{category}</h3>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-lg flex items-center justify-center">
-                          <Stethoscope className="w-4 h-4 text-cyan-600" />
-                        </div>
-                        <span className="text-sm text-gray-500">{items.length} conditions</span>
-                      </div>
-                    </div>
-                    <button 
-                      onClick={() => scrollToSection('contact')}
-                      className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
-                    >
-                      <span>Get Treatment</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-
-                  {/* Right Section - Service Items */}
-                  <div className="lg:w-3/4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
-                      {items.map((item, idx) => (
-                        <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-cyan-50 transition-colors duration-200">
-                          <div className="w-1.5 h-1.5 mt-2 bg-cyan-500 rounded-full flex-shrink-0"></div>
-                          <span className="text-sm lg:text-base text-gray-700">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+          {/* Right Section */}
+          <div className="lg:w-3/4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+              {items.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 hover:bg-cyan-50 transition-colors duration-200"
+                >
+                  <div className="text-cyan-600 mt-0.5">✔️</div>
+                  <span className="text-sm lg:text-base text-gray-700">
+                    {item}
+                  </span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
         </div>
-      </section>
+      </div>
+    ))}
+
+  </div>
+</section>
+
 
       {/* Online Consultation Section - Vertical Steps Layout */}
       <section id="online-consultation" className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
@@ -717,228 +989,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Reviews & Testimonials Section - Enhanced UI */}
-      <section id="reviews" className="py-12 lg:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-16">
-            <div className="inline-flex items-center justify-center space-x-2 text-cyan-600 mb-3 lg:mb-4">
-              <div className="w-1.5 h-6 lg:w-2 lg:h-8 bg-gradient-to-b from-cyan-500 to-blue-500 rounded-full"></div>
-              <span className="font-semibold text-xs lg:text-sm tracking-wider">PATIENT TESTIMONIALS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
-              Success Stories That 
-              <span className="text-cyan-600"> Inspire Hope</span>
-            </h2>
-            <p className="text-base lg:text-lg text-gray-600">
-              Real experiences from patients who found relief through our holistic approach
-            </p>
-          </div>
-
-          {/* Video Testimonials Section */}
-          <div className="mb-12 lg:mb-16">
-            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8 text-center">Video Testimonials</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {videoFiles.map((video, index) => (
-                // Show only first 3 videos initially, or all if showAllVideos is true
-                (showAllVideos || index < 3) && (
-                  <div key={index} className="group bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-cyan-200">
-                    {/* Video Thumbnail/Player */}
-                    <div className="relative overflow-hidden bg-black">
-                      <div 
-                        className="relative w-full h-48 lg:h-64 cursor-pointer"
-                        onClick={() => openVideoModal(video, videoTitles[index], videoQuotes[index])}
-                      >
-                        <video
-                          src={video}
-                          className="w-full h-full object-cover"
-                          poster={`/images/video-thumb-${index + 1}.jpg`}
-                          controls
-                          controlsList="nodownload"
-                        />
-                      </div>
-                      
-                      {/* Play Button Overlay */}
-                      <div 
-                        className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
-                        onClick={() => openVideoModal(video, videoTitles[index], videoQuotes[index])}
-                      >
-                        <div className="w-12 h-12 lg:w-16 lg:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                          <Play className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Video Info */}
-                    <div className="p-4 lg:p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-medium text-cyan-600 bg-cyan-50 px-2 py-1 rounded">Testimonial #{index + 1}</span>
-                        <button 
-                          onClick={() => openVideoModal(video, videoTitles[index], videoQuotes[index])}
-                          className="text-gray-400 hover:text-cyan-600 transition-colors"
-                        >
-                          <Maximize2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                      
-                      <h4 className="font-bold text-gray-900 mb-2 text-sm lg:text-base line-clamp-2">{videoTitles[index]}</h4>
-                      <p className="text-gray-600 text-xs lg:text-sm line-clamp-3">{videoQuotes[index]}</p>
-                    </div>
-                  </div>
-                )
-              ))}
-            </div>
-            
-            {/* Show All Videos Button - Only show if there are more than 3 videos */}
-            {!showAllVideos && videoFiles.length > 3 && (
-              <div className="text-center mt-8 lg:mt-12">
-                <button 
-                  className="px-6 lg:px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] flex items-center space-x-2 mx-auto"
-                  onClick={() => setShowAllVideos(true)}
-                >
-                  <Video className="w-4 h-4 lg:w-5 lg:h-5" />
-                  <span>Show All Videos </span>
-                </button>
-              </div>
-            )}
-            
-            {/* Show Less Button - When all videos are shown */}
-            {showAllVideos && (
-              <div className="text-center mt-8 lg:mt-12">
-                <button 
-                  className="px-6 lg:px-8 py-3 border border-cyan-600 text-cyan-600 font-medium rounded-xl hover:bg-cyan-50 transition-all duration-300 flex items-center space-x-2 mx-auto"
-                  onClick={() => setShowAllVideos(false)}
-                >
-                  <ChevronUp className="w-4 h-4 lg:w-5 lg:h-5" />
-                  <span>Show Less Videos</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Text Reviews Section */}
-          <div className="mb-8 lg:mb-12">
-            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8 text-center">Patient Reviews</h3>
-            
-            {/* Compact Reviews Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-              {reviews.map((review, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white rounded-xl lg:rounded-xl shadow-md p-4 lg:p-5 border border-gray-100 hover:shadow-lg transition-all duration-300 hover:border-cyan-100"
-                >
-                  {/* Compact Review Header */}
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <User className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 text-xs lg:text-sm truncate max-w-[120px]">{review.name}</h4>
-                        <p className="text-xs text-gray-400">{review.reviewsCount}</p>
-                      </div>
-                    </div>
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Compact Review Content */}
-                  <div className="mb-3">
-                    <p className="text-xs lg:text-sm text-gray-600 line-clamp-3">"{review.content}"</p>
-                  </div>
-                  
-                  {/* Compact Review Footer */}
-                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                    <span className="text-xs text-gray-400">{review.date}</span>
-                    <div className="flex items-center space-x-2">
-                      <button className="flex items-center space-x-1 text-gray-400 hover:text-cyan-600 transition-colors">
-                        <ThumbsUp className="w-3 h-3" />
-                        <span className="text-xs">{review.likes}</span>
-                      </button>
-                      <button className="text-gray-400 hover:text-cyan-600 transition-colors">
-                        <Share2 className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
-                  
-                  {/* Doctor Response - Smaller */}
-                  {review.response && (
-                    <div className="mt-3 pt-3 border-t border-cyan-50 bg-cyan-50/30 rounded-lg p-2">
-                      <div className="flex items-start space-x-1">
-                        <MessageCircle className="w-3 h-3 text-cyan-600 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-xs font-medium text-gray-900 mb-0.5">Dr. Vikas</p>
-                          <p className="text-xs text-gray-600 line-clamp-2">{review.response}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats Banner */}
-          <div className="mt-12 lg:mt-16 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-6 lg:p-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-              <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">4.9★</div>
-                <div className="text-xs lg:text-sm text-gray-600">Google Rating</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">{videoFiles.length}</div>
-                <div className="text-xs lg:text-sm text-gray-600">Video Testimonials</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">2K+</div>
-                <div className="text-xs lg:text-sm text-gray-600">Text Reviews</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-cyan-700 mb-1">98%</div>
-                <div className="text-xs lg:text-sm text-gray-600">Satisfaction Rate</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Fullscreen Video Modal */}
-        {isVideoModalOpen && selectedVideo && (
-          <div className="fixed inset-0 bg-black z-50 flex items-center justify-center p-4">
-            {/* Close Button */}
-            <button
-              onClick={closeVideoModal}
-              className="absolute top-4 right-4 lg:top-6 lg:right-6 z-50 w-10 h-10 lg:w-12 lg:h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300"
-            >
-              <X className="w-5 h-5 lg:w-6 lg:h-6" />
-            </button>
-            
-            {/* Video Container */}
-            <div className="relative w-full max-w-4xl h-auto max-h-[90vh]">
-              <video
-                src={selectedVideo.video}
-                className="w-full h-full rounded-lg lg:rounded-xl shadow-2xl"
-                controls
-                autoPlay
-                controlsList="nodownload"
-              />
-              
-              {/* Video Info in Fullscreen */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 lg:p-6 rounded-b-lg lg:rounded-b-xl">
-                <h3 className="text-white font-bold text-lg lg:text-xl mb-2">{selectedVideo.title}</h3>
-                <p className="text-gray-200 text-sm lg:text-base">{selectedVideo.quote}</p>
-              </div>
-            </div>
-            
-            {/* Click outside to close */}
-            <div 
-              className="absolute inset-0 -z-10"
-              onClick={closeVideoModal}
-            />
-          </div>
-        )}
-      </section>
+      
 
       {/* Contact & Map Section - Mobile optimized */}
       <section id="contact" className="py-12 lg:py-20 bg-gradient-to-br from-cyan-50 to-blue-50 p-4 lg:p-5">
@@ -1083,12 +1134,23 @@ const App = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8 lg:mb-12">
             <div>
               <div className="flex items-center space-x-3 mb-4 lg:mb-6">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg lg:rounded-xl flex items-center justify-center">
-                  <FlaskConical className="w-5 h-5 lg:w-7 lg:h-7" />
-                </div>
+              <div className="w-11 h-11 lg:w-14 lg:h-14 
+  bg-white rounded-xl 
+  flex items-center justify-center 
+  shadow-md hover:shadow-lg 
+  transition-all duration-300">
+
+  <img
+    src={logo}
+    alt="Logo"
+    className="w-9 h-9 lg:w-11 lg:h-11 
+    object-contain"
+  />
+</div>
+
                 <div>
                   <h3 className="text-base lg:text-xl font-bold">Aesthederm Homeopathy Clinic</h3>
-                  <p className="text-xs lg:text-sm text-cyan-400">Holistic Healing Since 2005</p>
+                 
                 </div>
               </div>
               <p className="text-gray-400 text-xs lg:text-sm mb-4 lg:mb-6">
@@ -1150,7 +1212,7 @@ const App = () => {
                   <span className="font-semibold text-white">10am - 2pm & 5pm - 9pm</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Monday</span>
+                  <span>Monday-</span>
                   <span className="font-semibold text-white">Close</span>
                 </div>
                 
@@ -1160,7 +1222,7 @@ const App = () => {
           
           <div className="border-t border-gray-800 pt-6 lg:pt-8 text-center">
             <p className="text-gray-500 text-xs lg:text-sm">
-              © {new Date().getFullYear()} Vikas Homeopathy Centre. All rights reserved.
+              © {new Date().getFullYear()} Aesthederm Homeopathy Clinic. All rights reserved.
             </p>
             <p className="text-gray-500 text-xs lg:text-sm mt-2">
               Designed with ❤️ for holistic healing and wellness
